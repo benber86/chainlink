@@ -1,0 +1,24 @@
+{
+  "assignment":{
+    "subtasks":[
+      {
+        "adapterType": "httpGet",
+        "adapterParams": {
+          "endpoint": "https://bitstamp.net/api/ticker/"
+        }
+      },
+      {
+        "adapterType": "jsonParse",
+        "adapterParams": {
+          "path": ["last"]
+        }
+      },
+      {
+        "adapterType":"ethBytes32"
+      },
+      {
+        "adapterType":"ethTx"
+      }
+    ]
+  }
+}
