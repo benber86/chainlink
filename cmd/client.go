@@ -297,7 +297,11 @@ func fromFile(arg string) (*bytes.Buffer, error) {
 
 func (cli *Client) deserializeResponse(resp *http.Response, dst interface{}) error {
 	if resp.StatusCode >= 400 {
-		return cli.errorOut(errors.New(resp.Status))
+		b, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			return cli.errorOut(errors.New(resp.Status))
+		}
+		return cli.errorOut(errors.New(string(b)))
 	}
 	b, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
